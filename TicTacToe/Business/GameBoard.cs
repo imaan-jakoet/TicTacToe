@@ -13,15 +13,14 @@ namespace TicTacToe.Business
             X,
             O
         }
+
         public CellState[,] grid = new CellState[3, 3];
         public int turnCount;
-        
+
         public void ResetBoard(string xPlayerName, string oPlayerName)
         {
             grid = new CellState[3, 3];
             turnCount = 0;
-            Player xPlayer = new Player(xPlayerName, "X");
-            Player oPlayer = new Player(oPlayerName, "O");
         }
 
         public void NewRound(Player xPlayer, Player oPlayer)
@@ -29,8 +28,7 @@ namespace TicTacToe.Business
             Player temp = xPlayer;
             xPlayer = oPlayer;
             oPlayer = temp;
-            ResetBoard(xPlayer.Name, oPlayer.Name); 
+            ResetBoard(xPlayer.Name, oPlayer.Name);
         }
-
     }
 }

@@ -7,13 +7,14 @@ namespace TicTacToe.Business
 {
     internal class GameLogic
     {
-        GameBoard board = new GameBoard();
+        public GameBoard board = new GameBoard();
         public Player turn;
         public Player xPlayer;
         public Player oPlayer;
 
         public Boolean CheckWin(Player turn)
         {
+            // Check rows
             for (int i = 0; i < 3; i++)
             {
                 if (board.grid[i, 0] != GameBoard.CellState.Empty &&
@@ -23,7 +24,12 @@ namespace TicTacToe.Business
                     turn.addScore();
                     return true;
                 }
-                else if (board.grid[0, i] != GameBoard.CellState.Empty &&
+            }
+
+            // Check columns
+            for (int i = 0; i < 3; i++)
+            {
+                if (board.grid[0, i] != GameBoard.CellState.Empty &&
                     board.grid[0, i] == board.grid[1, i] &&
                     board.grid[1, i] == board.grid[2, i])
                 {
@@ -31,6 +37,8 @@ namespace TicTacToe.Business
                     return true;
                 }
             }
+
+            // Check diagonal (top-left to bottom-right)
             if (board.grid[0, 0] != GameBoard.CellState.Empty &&
                 board.grid[0, 0] == board.grid[1, 1] &&
                 board.grid[1, 1] == board.grid[2, 2])
@@ -38,18 +46,17 @@ namespace TicTacToe.Business
                 turn.addScore();
                 return true;
             }
-            else if (board.grid[0, 2] != GameBoard.CellState.Empty &&
+
+            // Check diagonal (top-right to bottom-left)
+            if (board.grid[0, 2] != GameBoard.CellState.Empty &&
                 board.grid[0, 2] == board.grid[1, 1] &&
                 board.grid[1, 1] == board.grid[2, 0])
             {
                 turn.addScore();
                 return true;
             }
-            else
-            {
-                CheckDraw();
-                return false;
-            }
+
+            return false;
         }
 
         public Boolean CheckDraw()
@@ -63,12 +70,12 @@ namespace TicTacToe.Business
             if (turn.Equals(xPlayer))
             {
                 turn = oPlayer;
-
             }
             else
             {
                 turn = xPlayer;
             }
+
             if (CheckWin(turn))
             {
                 board.NewRound(xPlayer, oPlayer);
