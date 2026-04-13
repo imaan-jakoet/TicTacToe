@@ -26,3 +26,12 @@ The solution is divided into two primary components:
 1. **Clone the repository:**
    ```bash
    git clone [https://github.com/imaan-jakoet/TicTacToe.git](https://github.com/imaan-jakoet/TicTacToe.git)
+   
+2. Navigating to the directory:
+   cd TicTacToe
+   
+3. Restore dependencies:
+   dotnet restore
+
+4. Run the application:
+   dotnet run --project TicTacToe
